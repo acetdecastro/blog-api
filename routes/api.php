@@ -13,9 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::group(['prefix' => '/auth', ['middleware' => 'throttle:20,5']], function () {
-    
-    Route::post('/register', 'Auth\RegisterController@register');
-    Route::post('/login', 'Auth\LoginController@login');
+Route::prefix('auth')->group(function () {
+
+    Route::group(['middleware' => ['throttle:20,5']], function () {
+        Route::post('/register', 'Auth\RegisterController@register');
+        Route::post('/login', 'Auth\LoginController@login');
+    });
+
+});
+
+Route::prefix('account')->group(function () {
+
+    Route::group(['middleware' => ['jwt.auth']], function () {
+        Route::get('/profile', 'User\UserController@index');
+        Route::post('/logout', 'User\UserController@logout');
+    });
 
 });
