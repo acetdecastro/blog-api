@@ -24,4 +24,4 @@ $ php artisan migrate
 $ php artisan serve
 ```
 
-4. Clone and follow the steps for the front-end app [blog](https://github.com/acetdecastro/blog) on port 8000
+4. Clone and follow the steps for the front-end app [blog](https://github.com/acetdecastro/blog)
