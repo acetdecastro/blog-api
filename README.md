@@ -19,6 +19,7 @@ $ cp .env.example .env (OR) copy .env.example .env
 ``` bash
 $ composer dump-autoload
 $ php artisan key:generate
+$ php artisan jwt:secret
 $ php artisan make:schema
 $ php artisan migrate
 $ php artisan serve
