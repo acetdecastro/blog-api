@@ -24,7 +24,7 @@ class ArticleRequest extends FormRequest
             case 'PATCH':
             {
                 return [
-                    'title' => 'required',
+                    'title' => 'required|max:100',
                     'description' => 'required',
                 ];
             }

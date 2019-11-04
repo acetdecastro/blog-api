@@ -65,6 +65,27 @@ class ArticlesTest extends TestCase
     }
 
     /** @test */
+    public function a_title_should_not_be_greater_than_100_characters()
+    {
+        $token = JWTAuth::fromUser($this->user);
+
+        $headers = [
+            'Authorization' => 'Bearer ' . $token
+        ];
+
+        $title = str_pad('', 101, 'a');
+
+        $response = $this->post(
+            '/api/articles',
+            array_merge($this->validData(), ['title' => $title]),
+            $headers
+        );
+
+        $response->assertSessionHasErrors('title');
+        $this->assertCount(0, Article::all());
+    }
+
+    /** @test */
     public function an_unauthenticated_user_cannot_add_an_article()
     {
         $response = $this->post('/api/articles', $this->validData());
